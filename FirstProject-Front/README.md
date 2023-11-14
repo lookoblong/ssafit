@@ -27,3 +27,5 @@ npm run dev
 ```sh
 npm run build
 ```
+
+Front 기본 파일에 youtube 및 kakao API KEY를 .meta.env 파일에 별도로 저장 or 환경변수에 저장해서 사용할 것!
