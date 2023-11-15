@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.board.model.dao.ReviewDao">
+	<resultMap type="Review" id="reviewMap">
+		<result column="review_id" property="reviewId"/>
+		<result column="video_id" property="videoId"/>
+		<result column="user_id" property="userId"/>
+		<result column="review_title" property="title"/>
+		<result column="review_content" property="content"/>
+		<result column="review_created_at" property="createdAt"/>
+	</resultMap>
+
+	<select id="selectAll" resultMap="reviewMap" resultType="Review">
+		SELECT *  
+		FROM review
+		WHERE video_id = #{videoId};
+	</select>
+	
+	<!-- 리뷰 하나 선택해서 보기 없는 것 같아서 추가함.. -->
+	<select id="selectReview" resultMap="reviewMap" resultType="Review">
+		SELECT *  
+		FROM review
+		WHERE review_id = #{reviewId};
+	</select>
+
+	<insert id="writeReview" parameterType="Review" keyProperty="reviewId" useGeneratedKeys="true">
+		INSERT INTO review (video_id, user_id, review_title, review_content)
+		VALUES (#{videoId}, #{userId}, #{title}, #{content});
+	</insert>
+	
+	<delete id="deleteReview" parameterType="int">
+		DELETE FROM review
+		WHERE review_id = #{reviewId};
+	</delete>
+	
+	<update id="updateReview" parameterType="review">
+		UPDATE review
+		SET review_title = #{title}, review_content = #{content}
+		WHERE review_id = #{reviewId};
+	</update>
+	
+
+</mapper>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.board.model.dao.UserDao">
+    <resultMap type="User" id="userMap">
+        <result column="user_id" property="userId"/>
+        <result column="user_password" property="userPassword"/>
+        <result column="user_seq" property="userSeq"/>
+    </resultMap>
+ 
+	<select id="selectAll" resultMap="userMap" resultType="User">
+	    SELECT  *
+	    FROM user;
+	</select>
+	
+	<insert id="insertUser" parameterType="User" useGeneratedKeys = "true" keyProperty = "userSeq">
+	    INSERT INTO user (user_id, user_password)
+	    VALUES ( #{userId}, #{userPassword} );
+	</insert>
+	
+	<select id="selectOne" resultMap="userMap" resultType="User">
+	    SELECT *
+	    FROM user
+	    WHERE user_id = #{userId};
+	</select>
+	
+	<select id="selectUser" resultMap="userMap" resultType="User">
+	    SELECT *
+	    FROM user
+	    WHERE user_id = #{userId};
+	</select>
+	
+	<insert id="follow" parameterType="UserFollow">
+		INSERT INTO followings (user_id, following_id)
+		VALUES ( #{userId}, #{followId});
+	</insert>
+	
+	<select id="getFollowing" parameterType="String" resultType = "String">
+		SELECT following_id followId FROM followings
+		WHERE user_id = #{userId};
+	</select>
+
+
+	<select id="getFollower" parameterType="String" resultType = "String">
+		SELECT user_id userId FROM followings
+		WHERE following_id like #{followId};
+	</select>
+	
+	<delete id="unfollow" parameterType="UserFollow">
+		DELETE FROM followings
+		WHERE user_id = #{userId}
+		AND following_id = #{followId};
+	</delete>
+</mapper>
