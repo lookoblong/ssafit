@@ -5,7 +5,10 @@ USE ssafit;
 CREATE TABLE user(
 	user_seq INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	user_id VARCHAR(20) UNIQUE NOT NULL,
-	user_password VARCHAR(20) NOT NULL
+	user_password VARCHAR(20),
+    user_email VARCHAR(50) UNIQUE,
+    user_nickname VARCHAR(20) UNIQUE,
+    is_kakao SMALLINT DEFAULT 0
 )ENGINE = InnoDB;
 
 CREATE TABLE user_detail(

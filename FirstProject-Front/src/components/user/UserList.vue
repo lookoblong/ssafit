@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <br>
     <h2>사용자 목록</h2>
     <h4>등록된 사용자의 수 : {{ userCnt }}</h4>
     <div v-if="userList.length">
@@ -44,3 +45,11 @@ const props = defineProps({
   const userCnt = computed(() => props.userList.length);
 
 </script>
+
+<style scoped>
+
+/* .container {
+ text-align: center;
+} */
+
+</style>

@@ -3,7 +3,7 @@ import Home from "../views/HomeView.vue";
 import LoginForm from "@/components/LoginForm.vue";
 import User from "../views/UserView.vue";
 import UserList from "@/components/user/UserList.vue";
-import UserRegist from "@/components/user/UserRegist.vue";
+import UserSignup from "@/components/user/UserSignup.vue";
 import UserDetail from "@/components/user/UserDetail.vue";
 import Video from "../views/VideoView.vue"
 import VideoList from "@/components/video/VideoList.vue"
@@ -39,8 +39,8 @@ const routes = [
     children: [
       {
         path: "signup",
-        name: "UserRegist",
-        component: UserRegist,
+        name: "UserSignup",
+        component: UserSignup,
       },
       {
         path: "",
@@ -64,7 +64,7 @@ const routes = [
         component: BoardWrite,
       },
       {
-        path: "modify",
+        path: "modify/:id",
         name: "BoardModify",
         component: BoardModify,
       },

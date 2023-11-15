@@ -7,9 +7,9 @@ import { computed } from "vue";
 export const useUserStore = defineStore('user', ()=>{
   const router = useRouter();
   const userList = ref([]);
-  const user = ref({});
+  const user = ref("");
+  const getUser = ref(false)
 
-    // 사용자 목록 조회
   const getUserList = () => {
     axios({
       url: "http://localhost:8080/api/users" ,
@@ -23,55 +23,61 @@ export const useUserStore = defineStore('user', ()=>{
     });
   };
 
-  // 사용자 등록
-  const registUser = (user) => {
+  const signup = (user) => {
     axios({
       url: 'http://localhost:8080/api/users/signup',
       method: "POST",
       data: {
-        userId: user.userId,
-        userPassword: user.userPassword,
+        userId: user.id,
+        userPassword: user.password,
       },
     })
       .then(() => {
-        alert("등록 완료");
+        alert("회원가입 성공!");
         getUserList();
         router.push("/users");
       })
       .catch((err) => {
+        alert("중복된 아이디입니다")
         console.log(err);
       });
   };
 
-
-  //로그인
-  const loginUser = (u) => {
+  const loginUser = (user) => {
     axios({
       url: 'http://localhost:8080/api/login',
       method: "POST",
       data: {
-        userId: u.id,
-        userPassword: u.password,
+        userId: user.id,
+        userPassword: user.password,
       },
     })
-      .then((res) => {
-        alert("로그인 완료"); 
-        user.value = res.data; 
-        getUserList();
-        router.push("/");
-      })
-      .catch((err) => {
-        console.log(err);
-        alert("로그인에 실패했습니다");
-      });
+    .then((res) => {
+      sessionStorage.setItem('access-token', res.data["access-token"])
+      const token = res.data['access-token'].split('.')
+      let id = token[1]
+      id = atob(id)
+      id = JSON.parse(id)
+      console.log(id.id)
+      user.value = id.id
+      getUser.value = true
+      console.log(user.value)
+      console.log(getUser.value)
+      alert("로그인 성공!")
+      router.push("/");
+    })
+    .catch((err) => {
+      console.log(err);
+      alert("로그인 실패");
+    });
   };
 
-  //겟유저
-  const getUser = computed(() => !!user.value.userId); 
 
-  //로그아웃
   const logout = () => {
-    user.value = {};
+    user.value = '';
+    alert("로그아웃 하셨습니다")
+    getUser.value = false
+    router.push("/")
   };
 
 
@@ -94,12 +100,8 @@ export const useUserStore = defineStore('user', ()=>{
   //       console.log(err);
   //     });
   // };
-  
-  onMounted(() => {
-    getUserList();
-  });
 
-  return { router, user, userList, getUserList, registUser, onMounted, loginUser, logout, getUser}
+  return { router, user, userList, getUserList, signup, onMounted, loginUser, logout, getUser}
    
 
 })

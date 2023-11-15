@@ -5,9 +5,13 @@
 
 <mapper namespace="com.ssafy.board.model.dao.UserDao">
     <resultMap type="User" id="userMap">
+        <result column="user_seq" property="userSeq"/>
         <result column="user_id" property="userId"/>
         <result column="user_password" property="userPassword"/>
-        <result column="user_seq" property="userSeq"/>
+        <result column="user_email" property="userEmail"/>
+        <result column="user_nickname" property="userNickname"/>
+        <result column="is_kakao" property="isKakao"/>
+        
     </resultMap>
  
 	<select id="selectAll" resultMap="userMap" resultType="User">
@@ -16,8 +20,8 @@
 	</select>
 	
 	<insert id="insertUser" parameterType="User" useGeneratedKeys = "true" keyProperty = "userSeq">
-	    INSERT INTO user (user_id, user_password)
-	    VALUES ( #{userId}, #{userPassword} );
+	    INSERT INTO user (user_id, user_password, user_email, user_nickname, is_kakao)
+	    VALUES ( #{userId}, #{userPassword}, #{userEmail}, #{userNickname}, #{isKakao} );
 	</insert>
 	
 	<select id="selectOne" resultMap="userMap" resultType="User">

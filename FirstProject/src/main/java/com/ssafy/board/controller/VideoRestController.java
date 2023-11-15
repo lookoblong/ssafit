@@ -88,9 +88,7 @@ public class VideoRestController {
 	
 	@PostMapping("/video/bookmark/{videoId}")
 	@ApiOperation(value="영상 찜하기 (bookmark table에 삽입)")
-	public ResponseEntity<Void> bookmarkVideo(HttpSession session, @PathVariable int videoId){
-//		String userId = session.getId();
-		String userId = "admin";
+	public ResponseEntity<Void> bookmarkVideo(String userId, @PathVariable int videoId){
 		VideoBookmark bm = new VideoBookmark();
 		bm.setUserId(userId);
 		bm.setVideoId(videoId);
@@ -100,9 +98,7 @@ public class VideoRestController {
 	
 	@DeleteMapping("/video/bookmark/{videoId}")
 	@ApiOperation(value="영상 찜하기 해제")
-	public ResponseEntity<Void> delete(HttpSession session, @PathVariable int videoId){
-//		String userId = session.getId();
-		String userId = "admin";
+	public ResponseEntity<Void> delete(String userId, @PathVariable int videoId){
 		VideoBookmark bm = new VideoBookmark();
 		bm.setUserId(userId);
 		bm.setVideoId(videoId);
@@ -112,9 +108,7 @@ public class VideoRestController {
 	
 	@GetMapping("/user/bookmark")
 	@ApiOperation(value="user가 찜한 영상 userId로 가져오기")
-	public ResponseEntity<?> findBookmark(HttpSession session){
-//		String userId = session.getId();
-		String userId = "admin";
+	public ResponseEntity<?> findBookmark(String userId){
 		List<String> videoList = videoService.findBookmark(userId);
 		if (videoList != null) return new ResponseEntity<List<String>>(videoList, HttpStatus.OK);
 		else return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);

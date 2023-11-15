@@ -5,8 +5,6 @@
         <RouterLink to="/" class="logo">SSAFIT</RouterLink>
       </div>
 
-      <!--드롭다운 메뉴-->
-
   <div class="dropdown">
       <a href="#">INTRO</a>
         <div class="dropdown-content">
@@ -37,22 +35,11 @@
        <RouterLink to="/contactUs">CONTACT</RouterLink>
       </div>
 
-      <!-- <div>
-        <p to="/login">
-          <RouterLink to="/login">LOGIN</RouterLink>
-          <RouterLink :to="{ name: 'UserRegist' }">SIGN UP</RouterLink>
-          <RouterLink to="/users">USER</RouterLink>
-          <RouterLink to="/video">VIDEO</RouterLink>
-        </p>
-
-      </div> -->
-
-
       <div>
           <!-- <a href="#" v-if="getUser" @click="logout">로그아웃</a> -->
-          <a href="#" v-if="getUser"> 
+          <a href="#" v-if="store.getUser"> 
             <div class="dropdown">
-              <div>{{ store.user.userId }}님, 환영합니다.</div>
+              <div> 환영합니다.</div>
               <div class="dropdown-content">
                 <a href="#">내 정보</a>
                 <a href="#">내 스케줄</a>
@@ -65,7 +52,7 @@
           </a>
           <p to="/login" v-else>
             <RouterLink to="/login">LOGIN</RouterLink>
-            <RouterLink :to="{ name: 'UserRegist' }">SIGN UP</RouterLink>
+            <RouterLink :to="{ name: 'UserSignup' }">SIGN UP</RouterLink>
             <RouterLink to="/users">USER</RouterLink>
             <RouterLink to="/video">VIDEO</RouterLink>
           </p>
@@ -76,19 +63,17 @@
 </template>
 
 <script setup>
-  import { computed } from "vue";
-  import { useUserStore } from "@/stores/user";
-  import { RouterLink } from "vue-router"
+import { useUserStore } from "@/stores/user";
+import { RouterLink } from "vue-router"
+import { computed } from "vue";
 
-  const store = useUserStore();
+const store = useUserStore();
+let userId = computed(() => store.user)
 
-  const getUser = computed(() => !!store.getUser);
+const logout = () => { 
+  store.logout(); 
+};
 
-  const logout = () => { 
-    store.logout(); 
-    alert("로그아웃 되었습니다.");
-    console.log('Logout function called');
-  };
 </script>
 
 <style>

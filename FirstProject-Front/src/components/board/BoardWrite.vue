@@ -1,8 +1,6 @@
 <template>
   <h2>글 작성</h2>
     <div>
-      <label readonly for="userId">아이디:</label>
-      <input v-model="userId" type="text" id="userId" required>
       <div v-if="store.getUser">
         <label for="userId">아이디:</label>
         <input readonly v-model="store.user.userId" type="text" id="userId">
