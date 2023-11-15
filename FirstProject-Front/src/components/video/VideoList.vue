@@ -35,6 +35,10 @@ const store = useVideoStore()
 
 onMounted(() => {
   store.getVideoList();
+<<<<<<< HEAD
+=======
+  console.log(store.VideoList)
+>>>>>>> 7139276dbfeb635cdbc76b9915b67f9b7cfe34a3
 })
 </script>
 
