@@ -51,19 +51,28 @@ const isValidEmail = (id) => {
   return emailRegex.test(id);
 }
 
-const registUser = () => {
-  axios.get(`http://localhost:8080/api/users/${id.value}`)
-    .then((response) => {
-        if (!isValidEmail(id.value)) {
+const registUser = () => { 
+  
+  
+  if (!isValidEmail(id.value)) {
           alert("이메일 주소가 유효하지 않습니다.");
           return;
         } else {
-        
-        if (response.data.userId) {
-        alert('중복된 아이디입니다. 다른 아이디를 선택하세요.');
-        return;
-        } 
 
+    
+  axios.get(`http://localhost:8080/api/users/${id.value}`)
+    .then((response) => {
+       
+
+      const user = {
+          userId: id.value,
+          userPassword: password.value,
+        };
+        emit("regist-user", user);
+
+      // alert('아이디 중복 검사 중 오류 발생');
+      // console.error('아이디 중복 검사 중 오류 발생:', error);
+        alert('회원가입이 완료되었습니다.');
         // if (!isValidPassword(password.value)) {
         //   alert("비밀번호는 8자리 이상이고, 특수문자를 포함해야 합니다.");
         //   return;
@@ -82,24 +91,14 @@ const registUser = () => {
       // // console.error('아이디 중복 검사 중 오류 발생:', error);
       //   alert('회원가입이 완료되었습니다.');
         
-      }
+    
     })
+
     .catch((error) => {
-      if (!isValidEmail(id.value)) {
-          alert("이메일 주소가 유효하지 않습니다.");
-          return;
-        } 
-      const user = {
-          userId: id.value,
-          userPassword: password.value,
-        };
-        emit("regist-user", user);
-      // alert('아이디 중복 검사 중 오류 발생');
-      // console.error('아이디 중복 검사 중 오류 발생:', error);
-        alert('회원가입이 완료되었습니다.');
+      alert('중복된 아이디입니다. 다른 아이디를 선택하세요.');
     })
 };
-
+}
 store.getUserList();
 
 </script>
