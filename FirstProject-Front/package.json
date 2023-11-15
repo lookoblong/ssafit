@@ -9,15 +9,10 @@
   },
   "dependencies": {
     "axios": "^1.6.1",
-<<<<<<< HEAD
     "bootstrap": "^5.3.2",
     "bootstrap-icons": "^1.11.1",
     "pinia": "^2.1.7",
     "vue": "^3.3.8",
-=======
-    "pinia": "^2.1.7",
-    "vue": "^3.3.4",
->>>>>>> 7139276dbfeb635cdbc76b9915b67f9b7cfe34a3
     "vue-router": "^4.2.5"
   },
   "devDependencies": {

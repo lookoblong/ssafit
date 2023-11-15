@@ -1,21 +1,6 @@
 <template>
-<<<<<<< HEAD
     <br/>
     <h4> SSAFIT을 사용해 주셔서 감사합니다</h4>
-    <div class = intro>
-=======
-    <div class = contact>
-        <br>
-        <br>
-        <br>
-        <br>
->>>>>>> 7139276dbfeb635cdbc76b9915b67f9b7cfe34a3
-        <br>
-        <h1>DEVS</h1>
-        <br>
-    </div>
-<<<<<<< HEAD
-
     <div class="container px-4 text-center">
         <div class="row gx-5">
             <div class="col">
@@ -52,11 +37,7 @@
             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
         </div>
     </div>
-=======
-    <!-- CONTAINER 형식으로 
-    두 명의 프로필 정보 : 이름, 연락처, 소개 등이
-    두 개의 div 영역에 나눠서 표시하게-->
->>>>>>> 7139276dbfeb635cdbc76b9915b67f9b7cfe34a3
+
 </template>
 
 <script setup>
@@ -64,7 +45,7 @@
 </script>
 
 <style scoped>
-<<<<<<< HEAD
+
 h4 {
     margin-left: 50px;
 }
@@ -92,11 +73,10 @@ h4 {
     margin: 50px auto;
     max-width: 600px;
 }
-=======
+
 
 .contact {
     text-align: center;
 }
 
->>>>>>> 7139276dbfeb635cdbc76b9915b67f9b7cfe34a3
 </style>

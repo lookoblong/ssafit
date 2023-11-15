@@ -4,12 +4,11 @@
     <h2>회원가입</h2>
     <br>
     <form @submit.prevent="registUser">
-      <label for="userId">아이디 :</label>
-      <input v-model="userId" type="text" id="userId" required>
+      <label for="id">아이디 :</label>
+      <input v-model="id" type="text" id="userId" required>
       <br>
-      <label for="userPassword">비밀번호 :</label>
-      <input v-model="userPassword" type="password" id="userPassword" required>
-
+      <label for="password">비밀번호 :</label>
+      <input v-model="password" type="password" id="userPassword" required>
       <br>
       <br>
       <div class=buttonStyle>
@@ -21,21 +20,86 @@
 
 <script setup>
 import { ref } from 'vue';
+import  axios  from 'axios';
+import { useRouter } from "vue-router";
+import { defineEmits } from 'vue'; 
+import { useUserStore } from '@/stores/user'
 
-const emit = defineEmits();
+const store = useUserStore(); 
 
-const userId = ref('')
-const userPassword = ref('')
+const router = useRouter(); 
 
-const user = ref({
-  userId : userId,
-  userPassword: userPassword,
-})
+const emit = defineEmits(["regist-user"]);
 
-const registUser = () => {
-  console.log(user.value)
-  emit("regist-user", user.value)
+// const userId = ref('');
+// const userPassword = ref('');
+
+const id = ref('');
+const password = ref(''); 
+
+// const user = ref({
+//   userId : userId,
+//   userPassword: userPassword,
+// })
+
+const password2 = ref(""); 
+
+// email에 @의 포함 여부
+const isValidEmail = (id) => {
+  const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+  return emailRegex.test(id);
+}
+
+const registUser = () => { 
+  
+  
+  if (!isValidEmail(id.value)) {
+          alert("이메일 주소가 유효하지 않습니다.");
+          return;
+        } else {
+
+    
+  axios.get(`http://localhost:8080/api/users/${id.value}`)
+    .then((response) => {
+       
+
+      const user = {
+          userId: id.value,
+          userPassword: password.value,
+        };
+        emit("regist-user", user);
+
+      // alert('아이디 중복 검사 중 오류 발생');
+      // console.error('아이디 중복 검사 중 오류 발생:', error);
+        alert('회원가입이 완료되었습니다.');
+        // if (!isValidPassword(password.value)) {
+        //   alert("비밀번호는 8자리 이상이고, 특수문자를 포함해야 합니다.");
+        //   return;
+        // }
+
+        // if (password.value !== password2.value) {
+        //   alert("비밀번호가 일치하지 않습니다.");
+        //   return;
+        // }
+      //   const user = {
+      //     userId: id.value,
+      //     userPassword: password.value,
+      //   };
+      //   emit("regist-user", user);
+      // // alert('아이디 중복 검사 중 오류 발생');
+      // // console.error('아이디 중복 검사 중 오류 발생:', error);
+      //   alert('회원가입이 완료되었습니다.');
+        
+    
+    })
+
+    .catch((error) => {
+      alert('중복된 아이디입니다. 다른 아이디를 선택하세요.');
+    })
 };
+}
+store.getUserList();
+
 </script>
 
 <style scoped>

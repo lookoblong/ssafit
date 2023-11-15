@@ -12,7 +12,7 @@
       </div>
     </fieldset>
   </div>
-<<<<<<< HEAD
+
   <div>
     <a id="custom-login-btn" @click="kakaoLogin()">
       <img
@@ -22,8 +22,7 @@
     </a>
   </div>
   <div @click="kakaoLogout()">로그아웃</div>
-=======
->>>>>>> 7139276dbfeb635cdbc76b9915b67f9b7cfe34a3
+
 </template>
 
 <script setup>
@@ -35,10 +34,6 @@ const store = useUserStore();
 const id = ref("");
 const password = ref("");
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 7139276dbfeb635cdbc76b9915b67f9b7cfe34a3
 const login = () => {
   let user = {
     id: id.value,
@@ -47,7 +42,7 @@ const login = () => {
  store.loginUser(user); 
 };
 
-<<<<<<< HEAD
+
 const kakaoLogin= () => {
   window.Kakao.Auth.login({
     scope: "account_email",
@@ -76,8 +71,6 @@ const kakaoLogout = () => {
   })
 }
 
-=======
->>>>>>> 7139276dbfeb635cdbc76b9915b67f9b7cfe34a3
 const user = ref({
   id : id,
   password : password,

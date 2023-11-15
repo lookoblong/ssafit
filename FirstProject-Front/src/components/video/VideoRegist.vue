@@ -2,12 +2,10 @@
   <div>
     <h2>영상 등록</h2>
     <form @submit.prevent="registVideo">
-<<<<<<< HEAD
-=======
+
       <label>제목:</label>
       <input v-model="title" type="text" id="title" required>
 
->>>>>>> 7139276dbfeb635cdbc76b9915b67f9b7cfe34a3
       <label>파트:</label>
       <input v-model="part" type="text" id="part" required>
 
@@ -21,7 +19,6 @@
 
 <script setup>
 import { ref } from 'vue'
-<<<<<<< HEAD
 import axios from 'axios'
 import { useVideoStore } from '@/stores/video'
 
@@ -51,19 +48,7 @@ const getVideoTitle = async () => {
 const registVideo = async function () {
   await getVideoTitle();
   await store.registVideo(part, title, url);
-=======
-import axios from 'axios';
-const title = ref('')
-const part = ref('')
-const url = ref('')
 
-const video = {
-  videoTitle: '',
-  videoUrl: '',
-  videoPart: '',
-};
-
-const registVideo = function () {
   video.value.videoPart = part.value;
   video.value.videoTitle = title.value;
   video.value.videoUrl = url.value;
@@ -84,6 +69,6 @@ const registVideo = function () {
   .catch((err) => {
     console.log(err)
   })
->>>>>>> 7139276dbfeb635cdbc76b9915b67f9b7cfe34a3
+
 }
 </script>

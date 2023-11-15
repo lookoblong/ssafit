@@ -22,7 +22,6 @@ export const useVideoStore = defineStore('video', ()=> {
     })
   }
 
-<<<<<<< HEAD
   const registVideo = function (part, title, url) {
     video.value.videoPart = part.value;
     video.value.videoTitle = title.value;
@@ -46,9 +45,5 @@ export const useVideoStore = defineStore('video', ()=> {
 
 
   return {getVideo, getVideoList, videoList, video, registVideo}
-=======
-
-  return {getVideo, getVideoList, videoList, video}
->>>>>>> 7139276dbfeb635cdbc76b9915b67f9b7cfe34a3
 
 })
