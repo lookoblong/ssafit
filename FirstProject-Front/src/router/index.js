@@ -64,7 +64,7 @@ const routes = [
         component: BoardWrite,
       },
       {
-        path: "modify",
+        path: "modify/:id",
         name: "BoardModify",
         component: BoardModify,
       },
