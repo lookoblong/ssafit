@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.board.model.dao.TrainerDao">
+    <resultMap type="Trainer" id="trainerMap">
+        <result column="trainer_seq" property="trainerSeq"/>
+        <result column="trainer_id" property="trainerId"/>
+        <result column="trainer_password" property="trainerPassword"/>
+        <result column="trainer_email" property="trainerEmail"/>
+        <result column="trainer_nickname" property="trainerNickname"/>
+    </resultMap>
+ 
+	<select id="selectAll" resultMap="trainerMap" resultType="Trainer">
+	    SELECT  *
+	    FROM trainer;
+	</select>
+	
+	<insert id="insertTrainer" parameterType="Trainer" useGeneratedKeys = "true" keyProperty = "trainerSeq">
+	    INSERT INTO trainer (trainer_id, trainer_password, trainer_email, trainer_nickname)
+	    VALUES ( #{trainerId}, #{trainerPassword}, #{trainerEmail}, #{trainerNickname});
+	</insert>
+	
+	<select id="selectOne" resultMap="trainerMap" resultType="Trainer">
+	    SELECT *
+	    FROM trainer
+	    WHERE trainer_id = #{trainerId};
+	</select>
+	
+	<select id="selectTrainer" resultMap="trainerMap" resultType="Trainer">
+	    SELECT *
+	    FROM trainer
+	    WHERE trainer_id = #{trainerId};
+	</select>
+	
+</mapper>

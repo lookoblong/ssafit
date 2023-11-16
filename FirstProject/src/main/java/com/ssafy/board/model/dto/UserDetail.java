@@ -7,10 +7,9 @@ public class UserDetail {
 	private int userAge;
 	private int userHeight;
 	private int userWeight;
-	private String userJob;
-	private int userLevel;
 	private String userPreferredPlace;
 	private String userExtra;
+	private String trainerId; 
 	
 	private UserDetail() {}
 
@@ -62,22 +61,6 @@ public class UserDetail {
 		this.userWeight = userWeight;
 	}
 
-	public String getUserJob() {
-		return userJob;
-	}
-
-	public void setUserJob(String userJob) {
-		this.userJob = userJob;
-	}
-
-	public int getUserLevel() {
-		return userLevel;
-	}
-
-	public void setUserLevel(int userLevel) {
-		this.userLevel = userLevel;
-	}
-
 	public String getUserPreferredPlace() {
 		return userPreferredPlace;
 	}
@@ -94,14 +77,24 @@ public class UserDetail {
 		this.userExtra = userExtra;
 	}
 
+	public String getTrainerId() {
+		return trainerId;
+	}
+
+	public void setTrainerId(String trainerId) {
+		this.trainerId = trainerId;
+	}
+
 	@Override
 	public String toString() {
-		return "UserDetail [userSeq=" + userSeq + ", profilePic=" + userProfilePic + ", userGender=" + userGender
-				+ ", userAge=" + userAge + ", userHeight=" + userHeight + ", userWeight=" + userWeight + ", userJob="
-				+ userJob + ", userLevel=" + userLevel + ", userPreferredPlace=" + userPreferredPlace + ", userExtra="
-				+ userExtra + "]";
-	};
+		return "UserDetail [userSeq=" + userSeq + ", userProfilePic=" + userProfilePic + ", userGender=" + userGender
+				+ ", userAge=" + userAge + ", userHeight=" + userHeight + ", userWeight=" + userWeight
+				+ ", userPreferredPlace=" + userPreferredPlace + ", userExtra=" + userExtra + ", trainerId=" + trainerId
+				+ "]";
+	}
 	
+	
+
 	
 	
 }

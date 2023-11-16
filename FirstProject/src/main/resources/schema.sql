@@ -11,6 +11,17 @@ CREATE TABLE user(
     is_kakao SMALLINT DEFAULT 0
 )ENGINE = InnoDB;
 
+CREATE TABLE trainer(
+	trainer_seq INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	trainer_id VARCHAR(20) UNIQUE NOT NULL,
+	trainer_password VARCHAR(20) NOT NULL,
+    trainer_email VARCHAR(50) UNIQUE,
+    trainer_nickname VARCHAR(20) UNIQUE
+)ENGINE = InnoDB;
+
+insert into trainer (trainer_id, trainer_password) values ("trainer@naver.com", "trainer");
+select * from trainer;
+
 CREATE TABLE user_detail(
 	user_seq INT NOT NULL PRIMARY KEY ,
 	user_profile_pic VARCHAR(2000),
@@ -19,12 +30,22 @@ CREATE TABLE user_detail(
 	user_age INT,
 	user_height NUMERIC,
 	user_weight NUMERIC,
-	user_job VARCHAR(20),
-	user_level SMALLINT, #운동 숙련도 0 ~ 10 까지 선택
 	user_preferred_place VARCHAR(10),
 	user_extra VARCHAR(20),
+    trainer_id VARCHAR(20),
 	FOREIGN KEY (user_seq) REFERENCES user (user_seq)
 )ENGINE = InnoDB;
+
+CREATE TABLE trainer_detail(
+	trainer_seq INT NOT NULL PRIMARY KEY ,
+	trainer_profile_pic VARCHAR(2000),
+	# trainer detail
+    trainer_experience VARCHAR(30), 
+	trainer_extra VARCHAR(20),
+    user_id VARCHAR(20),
+	FOREIGN KEY (trainer_seq) REFERENCES trainer (trainer_seq)
+)ENGINE = InnoDB;
+
 
 CREATE TABLE user_schedule(
 	user_seq INT NOT NULL PRIMARY KEY,
